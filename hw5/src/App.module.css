@@ -1,0 +1,27 @@
+.test {
+  background-color: aqua;
+}
+
+.container {
+  border: 1px solid red;
+  padding: 10px;
+  margin: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  background-color: grey;
+  padding: 10px 10px;
+}
+
+.active {
+  color: white;
+  background-color: rgb(85, 85, 84);
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+}

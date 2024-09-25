@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.center {
+  margin-top: 30px;
+  padding-left: calc(50% - 570px);
+  padding-right: calc(50% - 570px);
+  max-width: 1140px;
+}
+.goods {
+  margin-top: 15px;
+}
