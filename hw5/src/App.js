@@ -12,11 +12,15 @@ import {
 } from "react-router-dom";
 import { ListImg } from "./components/ListImg";
 import { Detail } from "./components/Detail";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "./components/ToggleTheme/ToggleTheme";
+import { store } from "./components/ToggleTheme/Store";
+import { Switcher } from "./components/ToggleTheme/Switcher";
 
 function App() {
   const styleActiveLink = ({ isActive }) => {
     return isActive ? `${s.link} ${s.active}` : s.link;
-  };
+  }; //isActive смотреть в библиотке className
 
   const goods = [
     {
@@ -38,36 +42,48 @@ function App() {
     },
   ];
 
+  const { theme } = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
+
+  const handlerToggleTheme = () => {
+    dispatch(toggleTheme());
+  };
+
   return (
-    <>
-      <Box>
-        <BrowserRouter>
-          <nav className={styleActiveLink}>
-            <NavLink className={styleActiveLink} to="/">
-              {" "}
-              Главная{" "}
-            </NavLink>
-            <NavLink className={styleActiveLink} to="/about">
-              {" "}
-              О нас{" "}
-            </NavLink>
-            <NavLink className={styleActiveLink} to="/image">
-              {" "}
-              Картинки{" "}
-            </NavLink>
-          </nav>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPAge />} />
-            <Route path="/image" element={<ListImg product={goods} />} />
-            <Route
-              path="/image/:productID"
-              element={<Detail products={goods} />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </Box>
-    </>
+    <Box theme={theme}>
+      <button onClick={handlerToggleTheme} style={{ margin: "20px" }}>
+        Сменить тему
+      </button>
+
+      <BrowserRouter>
+        <nav>
+          <NavLink className={styleActiveLink} to="/">
+            {" "}
+            Главная{" "}
+          </NavLink>
+          <NavLink className={styleActiveLink} to="/about">
+            {" "}
+            О нас{" "}
+          </NavLink>
+          <NavLink className={styleActiveLink} to="/image">
+            {" "}
+            Картинки{" "}
+          </NavLink>
+        </nav>
+        <Routes>
+          <Route path="/" element={<HomePage theme={theme} />} />
+          <Route path="/about" element={<AboutPAge theme={theme} />} />
+          <Route
+            path="/image"
+            element={<ListImg product={goods} theme={theme} />}
+          />
+          <Route
+            path="/image/:productID"
+            element={<Detail products={goods} theme={theme} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </Box>
   );
 }
 

@@ -13,3 +13,12 @@
 .goods {
   margin-top: 15px;
 }
+.ligth {
+  color: rgb(2, 2, 2);
+  background-color: white;
+}
+
+.darck {
+  color: rgb(238, 238, 238);
+  background-color: rgb(53, 50, 50);
+}
